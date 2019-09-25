@@ -49,8 +49,8 @@ class Settings extends Component {
                 </form>
                 <div>
                     <ul>
-                        { players.map(player => (
-                            <li>{ player }</li>
+                        { players.map((player, index) => (
+                            <li key={ index } >{ player }</li>
                         )) }
                     </ul>
                 </div>
