@@ -11,6 +11,7 @@ class Settings extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -35,6 +36,7 @@ class Settings extends Component {
         e.preventDefault();
 
         // add players to store
+        this.props.handlePlayers(this.state.players);
     }
 
     render() {
@@ -55,7 +57,7 @@ class Settings extends Component {
                     </ul>
                 </div>
                 <div>
-                    <button><h2>Start Tournament!</h2></button>
+                    <button onClick={ this.handleSubmit }><h2>Start Tournament!</h2></button>
                 </div>
             </>
         );
