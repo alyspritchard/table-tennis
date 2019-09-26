@@ -2,7 +2,8 @@
 const addPlayers = (state, { players }) => {
     return {
         ...state,
-        players: players
+        players: players,
+        totalRounds: Math.log2(players.length),
     };
 };
 
@@ -16,9 +17,6 @@ const shuffle = (array) => {
     return array;
 };
 
-// calculate winner from match object
-const winner = (match) => match.p1Score > match.p2score ? match.player1 : match.player2;
-
 // setup counter for matchID
 let matchID = 0;
 
@@ -27,7 +25,7 @@ const generateMatches = (state) => {
     let totalRounds = Math.log2(state.players.length);
     let matches = [];
     let totalMatches = state.players.length / 2;
-
+    
     for (let i = 1; i <= totalRounds; i += 1) {
         for (let j = 1; j <= totalMatches; j += 1) {
             matches.push({
@@ -42,7 +40,7 @@ const generateMatches = (state) => {
         }
         totalMatches = totalMatches / 2;
     }
-
+    
     // update state
     return {
         ...state,
@@ -50,26 +48,39 @@ const generateMatches = (state) => {
     };
 };
 
+// calculate winner from match object
+const winner = (match) => match.p1Score > match.p2Score ? match.player1 : match.player2;
+
 // assign players
 const assignPlayers = (state) => {
+    let playing = [];
     // work out who is playing in this round
-    let playing = state.roundsPlayed === 0 
-    ? shuffle(state.players.map((p, index) => index)) 
-    : state.matches.filter(match => match.round === state.roundsPlayed).map(match => winner(match));
+    if (state.roundsPlayed === 0) {
+        playing = shuffle(state.players.map((p, index) => index));
+    } else {
+        let matches = state.matches.filter(match => match.round === state.roundsPlayed);
+        console.log(matches);
+        let winners = matches.map(match => winner(match));
+        console.log(winners);
+        playing = winners;
+    }
+    console.log(playing);
 
-    // array of matches for the next round to assign players to
-    let matches = state.matches.filter(match => match.round === state.roundsPlayed + 1);
-
-    // assign players to a match
-    let assignedMatches = matches.map(match => (
-        // overwrite "?" with player names
-        ({...match, player1: playing.shift(), player2: playing.shift()})
-    ));
+    let matches = state.matches.map(match => {
+        if (match.round === state.roundsPlayed + 1) {
+            return {
+                ...match,
+                player1: playing.shift(),
+                player2: playing.shift(),
+            };
+        }
+        return match;
+    })
 
     // update state
     return {
         ...state,
-        matches: Object.assign(state.matches, assignedMatches),
+        matches: matches,
     };
 };
 
@@ -80,10 +91,36 @@ const startTournament = (state) => {
     };
 };
 
+const updateScores = (state, { match }) => {
+    let matches = state.matches.map(currentMatch => {
+        if (currentMatch.id === match.id) {
+            return {
+                ...currentMatch,
+                p1Score: match.p1Score,
+                p2Score: match.p2Score,
+            };
+        }
+        return currentMatch;
+    })
+
+    return {
+        ...state,
+        matches: matches,
+    };
+};
+
+const roundComplete = (state) => {
+    return {
+        ...state,
+        roundsPlayed: state.roundsPlayed + 1,
+    }
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "initiate": return startTournament(assignPlayers(generateMatches(addPlayers(state, action))));
-        case "newRound": return assignPlayers(state);
+        case "updateRound": return updateScores(state, action);
+        case "nextRound": return assignPlayers(roundComplete(state));
         default: return state; 
     }; 
 };
