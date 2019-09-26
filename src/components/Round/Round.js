@@ -45,7 +45,7 @@ class Round extends Component {
                     <Match key={ index } match={ match } handleMatch={ this.handleMatches }/>
                 )) }
 
-                <button onClick={ (e) => this.handleSubmit(e) }>Next Round</button>
+                { round === totalRounds ? null : <button onClick={ (e) => this.handleSubmit(e) }>Next Round</button> }
             </>
         ); 
     }
