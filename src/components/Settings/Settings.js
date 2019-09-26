@@ -7,26 +7,27 @@ class Settings extends Component {
         this.state = {
             name: "",
             players: [],
-            error: false,
+            nameError: false,
+            playersError: false
 
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStart = this.handleStart.bind(this);
     }
 
     handleChange(e) {
         this.setState({
             name: e.currentTarget.value,
-            error: false,
+            nameError: false,
+            playersError: false,
         });
     }
 
     handleClick(e) {
         e.preventDefault();
         let name = this.state.name.trim();
-        console.log(name);
 
         // name cannot be empty string or the same as another player
         if (name !== "" && !this.state.players.includes(name)) {
@@ -36,20 +37,27 @@ class Settings extends Component {
             });
         } else {
             this.setState({
-                error: true,
+                nameError: true,
             });
         }
     }
 
-    handleSubmit(e) {
+    handleStart(e) {
         e.preventDefault();
 
-        // add players to store
-        this.props.handlePlayers(this.state.players);
+        let { players } = this.state;
+
+        if (players.length >= 4 && Number.isInteger(Math.log2(players.length))) {
+            this.props.handlePlayers(players);
+        } else {
+            this.setState({
+                playersError: true,
+            });
+        }
     }
 
     render() {
-        let { name, players, error } = this.state;
+        let { name, players, nameError, playersError } = this.state;
 
         return (
             <>
@@ -57,7 +65,7 @@ class Settings extends Component {
                     <label htmlFor="playerName"><h2>Add a Player</h2></label>
                     <input onChange={ (e) => this.handleChange(e) } value={ name } id="playerName" type="text" maxLength="30"></input>
                     <button onClick={ (e) => this.handleClick(e) }>Add 'em</button>
-                    { !error ? null : <p>I need a valid name please! If the person you're trying to add shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll.</p>}
+                    { !nameError ? null : <p>I need a valid name please! If the person you're trying to add shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll.</p>}
                 </form>
                 <div>
                     <ul>
@@ -65,9 +73,10 @@ class Settings extends Component {
                             <li key={ index } >{ player }</li>
                         )) }
                     </ul>
+                    { !playersError ? null : <p>You need a minimum of 4 players, and the number also needs to be a power of 2! Don't ask me why, maths isn't my strong suit...</p> }
                 </div>
                 <div>
-                    <button onClick={ this.handleSubmit }><h2>Start Tournament!</h2></button>
+                    <button onClick={ this.handleStart }><h2>Start Tournament!</h2></button>
                 </div>
             </>
         );
