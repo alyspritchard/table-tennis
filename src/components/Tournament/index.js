@@ -2,9 +2,9 @@ import { connect } from "react-redux";
  
 import Tournament from "./Tournament";
 
-const mapStateToProps = ({ players }) => { 
+const mapStateToProps = ({ totalRounds }) => { 
     return {
-        totalRounds: Math.log2(players.length),
+        totalRounds: totalRounds,
     }; 
 };
 
