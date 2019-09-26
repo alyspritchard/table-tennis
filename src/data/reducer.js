@@ -1,3 +1,5 @@
+import initial from "./initial";
+
 // add players
 const addPlayers = (state, { players }) => {
     return {
@@ -116,11 +118,18 @@ const roundComplete = (state) => {
     }
 }
 
+const reset = () => {
+    return {
+        ...initial
+    }
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "initiate": return startTournament(assignPlayers(generateMatches(addPlayers(state, action))));
         case "updateRound": return updateScores(state, action);
         case "nextRound": return assignPlayers(roundComplete(state));
+        case "newTournament": return reset(state);
         default: return state; 
     }; 
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 import Round from "../Round";
 
-const Tournament = ({ totalRounds }) => {
+const Tournament = ({ totalRounds, handleNewTournament }) => {
     const rounds = [];
 
     for (let i = 1; i <= totalRounds; i += 1) {
@@ -16,6 +16,8 @@ const Tournament = ({ totalRounds }) => {
                     { round }
                 </div>
             )) }
+
+            <button onClick={ handleNewTournament }>New Tournament</button>
         </>
     )
 };

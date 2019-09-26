@@ -19,3 +19,9 @@ export const endRound = () => {
         type: "nextRound",
     };
 };
+
+export const newTournament = () => {
+    return { 
+        type: "newTournament",
+    };
+};
