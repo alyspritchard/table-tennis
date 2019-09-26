@@ -7,6 +7,7 @@ class Settings extends Component {
         this.state = {
             name: "",
             players: [],
+            error: false,
 
         };
 
@@ -18,18 +19,26 @@ class Settings extends Component {
     handleChange(e) {
         this.setState({
             name: e.currentTarget.value,
+            error: false,
         });
     }
 
     handleClick(e) {
         e.preventDefault();
+        let name = this.state.name.trim();
+        console.log(name);
 
-        // will add validation, so names submitted cannot be empty strings etc.
-
-        this.setState({
-            players: [...this.state.players, this.state.name],
-            name: ""
-        })
+        // name cannot be empty string or the same as another player
+        if (name !== "" && !this.state.players.includes(name)) {
+            this.setState({
+                players: [...this.state.players, name],
+                name: ""
+            });
+        } else {
+            this.setState({
+                error: true,
+            });
+        }
     }
 
     handleSubmit(e) {
@@ -40,7 +49,7 @@ class Settings extends Component {
     }
 
     render() {
-        let { name, players } = this.state;
+        let { name, players, error } = this.state;
 
         return (
             <>
@@ -48,6 +57,7 @@ class Settings extends Component {
                     <label htmlFor="playerName"><h2>Add a Player</h2></label>
                     <input onChange={ (e) => this.handleChange(e) } value={ name } id="playerName" type="text" maxLength="30"></input>
                     <button onClick={ (e) => this.handleClick(e) }>Add 'em</button>
+                    { !error ? null : <p>I need a valid name please! If the person you're trying to add shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll.</p>}
                 </form>
                 <div>
                     <ul>
