@@ -15,10 +15,21 @@ class Round extends Component {
     }
 
     handleMatches(match) {
-        this.setState({
-            matches: [...this.state.matches, match]
-        });
-        console.log(this.state.matches);
+        // check if match already exists in state, if not, add it
+        if (!this.state.matches.map(stateMatch => stateMatch.id).includes(match.id)) {
+            this.setState({
+                matches: [...this.state.matches, match]
+            });
+        // the match already exists in state, so replace it
+        } else {
+            let matches = this.state.matches.map(stateMatch => (
+                stateMatch.id === match.id ? match : stateMatch
+            ));
+
+            this.setState({
+                matches: matches,
+            })
+        }
     }
 
     handleSubmit(e) {
