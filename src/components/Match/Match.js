@@ -9,23 +9,32 @@ class Match extends Component {
     }
 
     handlePlayer1() {
-        let { match } = this.props;
-        
-        // need to add validation - should only run if this round is in play
-        
-        // update redux store - player1 score to 1, player2 score to 0
-        this.props.player1Score(match.id, 1);
-        this.props.player2Score(match.id, 0);
+        let { match, roundsPlayed } = this.props;
+
+        if (match.round - 1 === roundsPlayed) {
+            let updatedMatch = {
+                ...match, 
+                p1Score: 1, 
+                p2Score: 0,
+            };
+            console.log(updatedMatch);
+            // pass match object up to Round component
+            this.props.handleMatch(updatedMatch);
+        }   
     }
 
     handlePlayer2() {
-        let { match } = this.props;
-        
-        // need to add validation - should only run if this round is in play
+        let { match, roundsPlayed } = this.props;
 
-        // update redux store - player2 score to 1, player1 score to 0
-        this.props.player1Score(match.id, 0);
-        this.props.player2Score(match.id, 1);
+        if (match.round - 1 === roundsPlayed) {
+            let updatedMatch = {
+                ...match, 
+                p1Score: 0, 
+                p2Score: 1,
+            };
+            // pass match object up to Round component
+            this.props.handleMatch(updatedMatch);
+        }  
     }
 
     render() {

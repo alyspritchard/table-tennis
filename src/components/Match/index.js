@@ -2,20 +2,22 @@ import { connect } from "react-redux";
  
 import Match from "./Match";
 
-import { updateScore } from "../../data/actions";
+// import { updateScore } from "../../data/actions";
 
-const mapStateToProps = ({ players }, { match }) => { 
+const mapStateToProps = ({ players, roundsPlayed }, { match, handleMatch }) => { 
     return {
         players: players,
         match: match,
+        roundsPlayed: roundsPlayed,
+        handleMatch: handleMatch,
     }; 
 };
 
-const mapDispatchToProps = (dispatch) => { 
-    return {
-        player1Score: (matchId, score) => dispatch(updateScore(matchId, "p1Score", score)),
-        player2Score: (matchId, score) => dispatch(updateScore(matchId, "p2Score", score)),
-    }; 
-};
+// const mapDispatchToProps = (dispatch) => { 
+//     return {
+//         player1Score: (matchID, score) => dispatch(updateScore(matchID, "p1Score", score)),
+//         player2Score: (matchID, score) => dispatch(updateScore(matchID, "p2Score", score)),
+//     }; 
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Match);
+export default connect(mapStateToProps)(Match);

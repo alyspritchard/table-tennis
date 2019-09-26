@@ -2,12 +2,21 @@ import { connect } from "react-redux";
  
 import Round from "./Round";
 
-const mapStateToProps = ({ matches, players }, { round }) => { 
+import { updateScores, endRound } from "../../data/actions";
+
+const mapStateToProps = ({ matches, totalRounds }, { round }) => { 
     return { 
         round: round,
-        matches: matches.filter(match => match.round === round),
-        totalRounds: Math.log2(players.length),
+        matches: matches,
+        totalRounds: totalRounds,
     }; 
 };
 
-export default connect(mapStateToProps)(Round);
+const mapDispatchToProps = (dispatch) => { 
+        return {
+            submitScores: (match) => dispatch(updateScores(match)),
+            endRound: () => dispatch(endRound()),
+        }; 
+    };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Round);
