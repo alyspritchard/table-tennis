@@ -49,14 +49,22 @@ class Round extends Component {
         return (
             <>
                 {/* show which round it is */}
-                <h2>{ round === totalRounds ? "Final" : "Round" + round }</h2>
-    
+                <h2 className="title">{ round === totalRounds ? "Final" : "Round" + round }</h2>
+                
                 {/* generate a Match component for each match */}
                 { matches.filter(match => match.round === round).map((match, index) => (
                     <Match key={ index } match={ match } handleMatch={ this.handleMatches }/>
                 )) }
 
-                { round === totalRounds ? null : <button onClick={ (e) => this.handleSubmit(e) }>Next Round</button> }
+                { round === totalRounds 
+                    ? <button 
+                        onClick={ (e) => this.handleWinner(e) }
+                        className="nes-btn is-primary"
+                    >Confirm Winner</button>
+                    : <button 
+                        onClick={ (e) => this.handleSubmit(e) }
+                        className="nes-btn is-primary"
+                    >Next Round</button> }
             </>
         ); 
     }

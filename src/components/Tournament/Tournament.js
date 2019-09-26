@@ -10,15 +10,22 @@ const Tournament = ({ totalRounds, handleNewTournament }) => {
     }
 
     return (
-        <>
+        <div className="container--tournament">
             { rounds.map((round, index) => (
-                <div key={ index }>
-                    { round }
-                </div>
+                <div 
+                    key={ index }
+                    className={`nes-container with-title item-${index}`}
+                >{ round }</div>
             )) }
 
-            <button onClick={ handleNewTournament }>New Tournament</button>
-        </>
+            <div className="button--new-tournament">
+                <button 
+                    onClick={ handleNewTournament }
+                    className="nes-btn is-primary button"
+                >New Tournament</button>
+            </div>
+            
+        </div>
     )
 };
 

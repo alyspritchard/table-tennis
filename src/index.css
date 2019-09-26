@@ -2,6 +2,11 @@ html, body, button {
   font-family: 'Press Start 2P', cursive;
 }
 
+button {
+  display: block;
+  width: 100%;
+}
+
 .container {
   margin: 10%;
   display: grid;
@@ -25,3 +30,87 @@ html, body, button {
 .item-c {
   grid-area: 2 / 1 / 3 / 3;
 }
+
+.container--tournament {
+  margin: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 3vh 3vw;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.container--tournament > div > h2 {
+  width: min-content;
+}
+.item-0 {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-1 {
+  grid-area: 1 / 2 / 2 / 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-2 {
+  grid-area: 1 / 3 / 2 / 4;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-3 {
+  grid-area: 1 / 4 / 2 / 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-4 {
+  grid-area: 1 / 5 / 2 / 6;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-5 {
+  grid-area: 1 / 6 / 2 / 7;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-6 {
+  grid-area: 1 / 7 / 2 / 8;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .button--new-tournament {
+  undecided on placement
+
+} */
+
+.container--match {
+  margin-bottom: 15%;
+}
+
+/* .button--match {
+
+} */
+

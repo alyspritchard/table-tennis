@@ -4,6 +4,10 @@ class Match extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            winner: 0,
+        }
+
         this.handlePlayer1 = this.handlePlayer1.bind(this);
         this.handlePlayer2 = this.handlePlayer2.bind(this);
     }
@@ -17,9 +21,9 @@ class Match extends Component {
                 p1Score: 1, 
                 p2Score: 0,
             };
-            console.log(updatedMatch);
             // pass match object up to Round component
             this.props.handleMatch(updatedMatch);
+            this.setState({ winner: 1 });
         }   
     }
 
@@ -34,27 +38,32 @@ class Match extends Component {
             };
             // pass match object up to Round component
             this.props.handleMatch(updatedMatch);
+            this.setState({ winner: 2 });
         }  
     }
 
     render() {
         let { players, match } = this.props;
+        let { winner } = this.state;
 
         let player1 = players[match.player1];
         let player2 = players[match.player2];
 
+        let p1Win = winner === 0 ? null : winner === 1 ? "success" : "error";
+        let p2Win = winner === 0 ? null : winner === 2 ? "success" : "error";
+
         return (
-            <div>
+            <div className="container--match">
                 <button 
                     onClick={ this.handlePlayer1 }
                     // this isn't doing any actual styling yet - if scores are equal both players highlighted amber, else green if winning/red if losing
-                    className={ match.p1Score === match.p2Score ? "amber" : match.p1Score > match.p2Score ? "green" : "red" }
+                    className={ `button-match nes-btn is-${p1Win}` }
                 >{ player1 === undefined ? "?" : player1.name }</button>
 
                 <button 
                     onClick={ this.handlePlayer2 }
                     // this isn't doing any actual styling yet - if scores are equal both players highlighted amber, else green if winning/red if losing
-                    className={ match.p1Score === match.p2Score ? "amber" : match.p1Score < match.p2Score ? "green" : "red" }
+                    className={ `button--match nes-btn is-${p2Win}` }
                 >{ player2 === undefined ? "?" : player2.name }</button>
             </div>
         );
