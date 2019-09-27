@@ -61,37 +61,60 @@ class Settings extends Component {
 
         return (
             <div className="container">
-                <form className="item-a nes-container with-title">
-                    <h2 className="title">Add a Player</h2>
-                    <label htmlFor="playerName">Name</label>
-                    <input 
-                        onChange={ (e) => this.handleChange(e) } 
-                        value={ name } id="playerName" 
-                        type="text" 
-                        maxLength="30"
-                        placeholder="Princess Peach"
-                    ></input>
+                
+                <form className="item--add nes-container is-rounded">
+                    <h2 className="title--container">Add a Player</h2>
+                    <div className="nes-field is-inline">
+                        <label htmlFor="playerName">Name</label>
+                        <input 
+                            onChange={ (e) => this.handleChange(e) } 
+                            value={ name } id="playerName" 
+                            type="text" 
+                            maxLength="30"
+                            placeholder="Princess Peach"
+                            className={`nes-input ${nameError ? "error" : null}`}
+                        ></input>
+                    </div>
                     
                     <button 
-                        className="nes-btn is-primary" 
+                        className="nes-btn is-success" 
                         onClick={ (e) => this.handleClick(e) }
                     >Add 'em</button>
 
-                    { !nameError ? null : <p>I need a valid name please! If the person you're trying to add shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll.</p>}
                 </form>
 
-                <div className="item-b nes-container with-title">
-                    <h2 className="title">Your Fighters</h2>
-                    <ul>
+                <div className="item--players lists nes-container is-rounded">
+                    <h2 className="title--container">Who's Playing?</h2>
+                    <p>So you don't forget...</p>
+                    <ul className="nes-list is-disc">
                         { players.map((player, index) => (
                             <li key={ index } >{ player }</li>
                         )) }
                     </ul>
-                    { !playersError ? null : <p>You need a minimum of 4 players, and the number also needs to be a power of 2! Don't ask me why, maths isn't my strong suit...</p> }
                 </div>
 
-                <div className="item-c">
-                    <button className="nes-btn is-primary" onClick={ this.handleStart }><h2>Start Tournament!</h2></button>
+                { playersError ?
+                <section className="item--error message -right">
+                    <div className="nes-balloon from-right">
+                        <p>Don't forget what I said! You need a minimum of 4 players, and the number of players also needs to be a power of 2! Don't ask me why, maths isn't my strong suit...</p>
+                    </div>
+                    <i className="nes-bcrikko"></i>
+                </section> : nameError ? 
+                <section className="item--error message -right">
+                    <div className="nes-balloon from-right">
+                        <p>I need a valid name please! If the person you're trying to add, shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll.</p>
+                    </div>
+                    <i className="nes-bcrikko"></i>
+                </section> 
+                : <section className="item--error message -right">
+                    <div className="nes-balloon from-right">
+                        <p>Welcome! To create your tournament you'll need a minimum of 4 players, and the total number of players needs to be a power of 2 (i.e. 4, 8, 16, 32 ...)</p>
+                    </div>
+                    <i className="nes-bcrikko"></i>
+                </section> }
+
+                <div className="item--start">
+                    <button className="btn--start nes-btn is-success" onClick={ this.handleStart }><span className="big-btn-text">Start Tournament!</span></button>
                 </div>
             </div>
         );
