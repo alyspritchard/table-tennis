@@ -43,27 +43,27 @@ class Match extends Component {
     }
 
     render() {
-        let { players, match } = this.props;
+        let { players, match, submitted } = this.props;
         let { winner } = this.state;
 
         let player1 = players[match.player1];
         let player2 = players[match.player2];
 
-        let p1Win = winner === 0 ? null : winner === 1 ? "success" : "error";
-        let p2Win = winner === 0 ? null : winner === 2 ? "success" : "error";
+        let p1Win = winner === 1 && submitted ? "warning" : winner === 1 ? "success" : null;
+        let p2Win = winner === 2 && submitted ? "warning" : winner === 2 ? "success" : null;
 
         return (
             <div className="container--match">
                 <button 
                     onClick={ this.handlePlayer1 }
                     // this isn't doing any actual styling yet - if scores are equal both players highlighted amber, else green if winning/red if losing
-                    className={ `button-match nes-btn is-${p1Win}` }
+                    className={ `nes-btn is-${p1Win}` }
                 >{ player1 === undefined ? "?" : player1.name }</button>
 
                 <button 
                     onClick={ this.handlePlayer2 }
                     // this isn't doing any actual styling yet - if scores are equal both players highlighted amber, else green if winning/red if losing
-                    className={ `button--match nes-btn is-${p2Win}` }
+                    className={ `nes-btn is-${p2Win}` }
                 >{ player2 === undefined ? "?" : player2.name }</button>
             </div>
         );

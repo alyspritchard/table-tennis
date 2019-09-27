@@ -4,12 +4,13 @@ import Match from "./Match";
 
 // import { updateScore } from "../../data/actions";
 
-const mapStateToProps = ({ players, roundsPlayed }, { match, handleMatch }) => { 
+const mapStateToProps = ({ players, roundsPlayed }, { match, handleMatch, submitted }) => { 
     return {
         players: players,
         match: match,
         roundsPlayed: roundsPlayed,
         handleMatch: handleMatch,
+        submitted: submitted,
     }; 
 };
 

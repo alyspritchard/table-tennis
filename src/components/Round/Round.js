@@ -7,7 +7,8 @@ class Round extends Component {
         super(props);
 
         this.state = { 
-			matches: [],
+            matches: [],
+            submitted: false,
 		};
 
         this.handleMatches = this.handleMatches.bind(this);
@@ -40,6 +41,9 @@ class Round extends Component {
         if (this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
             this.state.matches.forEach(match => this.props.submitScores(match));
             this.props.endRound();
+            this.setState({
+                submitted: true,
+            });
         }
     }
 
@@ -49,21 +53,26 @@ class Round extends Component {
         return (
             <>
                 {/* show which round it is */}
-                <h2 className="title">{ round === totalRounds ? "Final" : "Round" + round }</h2>
+                <h2>{ round === totalRounds ? "Final" : "Round" + round }</h2>
                 
                 {/* generate a Match component for each match */}
                 { matches.filter(match => match.round === round).map((match, index) => (
-                    <Match key={ index } match={ match } handleMatch={ this.handleMatches }/>
+                    <Match 
+                        key={ index } 
+                        match={ match } 
+                        handleMatch={ this.handleMatches } 
+                        submitted={ this.state.submitted }
+                    />
                 )) }
 
                 { round === totalRounds 
                     ? <button 
                         onClick={ (e) => this.handleWinner(e) }
-                        className="nes-btn is-primary"
-                    >Confirm Winner</button>
+                        className="nes-btn is-success"
+                    >Confirm</button>
                     : <button 
                         onClick={ (e) => this.handleSubmit(e) }
-                        className="nes-btn is-primary"
+                        className="nes-btn is-success"
                     >Next Round</button> }
             </>
         ); 
