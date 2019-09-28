@@ -13,6 +13,7 @@ class Round extends Component {
 
         this.handleMatches = this.handleMatches.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChampion = this.handleChampion.bind(this);
     }
 
     handleMatches(match) {
@@ -37,14 +38,32 @@ class Round extends Component {
         e.preventDefault();
         let { round } = this.props;
 
-        // check a winner has been picked for all matches in this round
-        if (this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
+        // check hasn't already been submitted & a winner has been picked for all matches in this round
+        if (!this.state.submitted && this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
             this.state.matches.forEach(match => this.props.submitScores(match));
             this.props.endRound();
             this.setState({
                 submitted: true,
             });
         }
+    }
+
+    handleChampion(e) {
+        e.preventDefault();
+        let { round } = this.props;
+        
+        // check hasn't already been submitted & a winner has been picked
+        if (!this.state.submitted && this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
+            let match = this.state.matches[0];
+            console.log(match);
+            this.props.submitScores(match);
+            this.props.endTournament(match);
+            
+            this.setState({
+                submitted: true,
+            })
+        }
+
     }
 
     render() {
@@ -67,7 +86,7 @@ class Round extends Component {
 
                 { round === totalRounds 
                     ? <button 
-                        onClick={ (e) => this.handleWinner(e) }
+                        onClick={ (e) => this.handleChampion(e) }
                         className="nes-btn is-success"
                     >Confirm</button>
                     : <button 

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
  
 import Round from "./Round";
 
-import { updateScores, endRound } from "../../data/actions";
+import { updateScores, endRound, endTournament } from "../../data/actions";
 
 const mapStateToProps = ({ matches, totalRounds }, { round }) => { 
     return { 
@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => {
         return {
             submitScores: (match) => dispatch(updateScores(match)),
             endRound: () => dispatch(endRound()),
+            endTournament: (match) => dispatch(endTournament(match)),
         }; 
     };
 

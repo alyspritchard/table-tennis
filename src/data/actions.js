@@ -20,6 +20,13 @@ export const endRound = () => {
     };
 };
 
+export const endTournament = (match) => {
+    return { 
+        type: "endTournament",
+        finalMatch: match,
+    };
+};
+
 export const newTournament = () => {
     return { 
         type: "newTournament",

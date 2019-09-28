@@ -4,9 +4,12 @@ import Tournament from "./Tournament";
 
 import { newTournament } from "../../data/actions";
 
-const mapStateToProps = ({ totalRounds }) => { 
+const mapStateToProps = ({ totalRounds, roundsPlayed, players, champion }) => { 
     return {
         totalRounds: totalRounds,
+        roundsPlayed: roundsPlayed,
+        players: players,
+        champion: champion,
     }; 
 };
 

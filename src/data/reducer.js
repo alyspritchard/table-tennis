@@ -118,6 +118,15 @@ const roundComplete = (state) => {
     }
 }
 
+const selectChampion = (state, { finalMatch }) => {
+    const champion = winner(finalMatch);
+    console.log(champion);
+    return {
+        ...state,
+        champion: champion,
+    }
+}
+
 const reset = () => {
     return {
         ...initial
@@ -129,6 +138,7 @@ const reducer = (state, action) => {
         case "initiate": return startTournament(assignPlayers(generateMatches(addPlayers(state, action))));
         case "updateRound": return updateScores(state, action);
         case "nextRound": return assignPlayers(roundComplete(state));
+        case "endTournament": return roundComplete(selectChampion(state, action));
         case "newTournament": return reset(state);
         default: return state; 
     }; 

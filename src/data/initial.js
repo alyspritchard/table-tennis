@@ -4,6 +4,7 @@ const initial = {
     inPlay: false,
     roundsPlayed: 0,
     totalRounds: 0,
+    champion: -1,
 };
 
 export default initial;
