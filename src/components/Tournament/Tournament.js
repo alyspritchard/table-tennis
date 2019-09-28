@@ -12,28 +12,28 @@ const Tournament = ({ totalRounds, roundsPlayed, players, champion, handleNewTou
     const championName = champion === -1 ? "" : players[champion].name;
 
     return (
-        <>
+        <div className="container">
             { totalRounds === roundsPlayed ?
-                <section className="item--error message -right">
+                <section className="container--message message -right">
                     <div className="nes-balloon from-right">
                         <p>{`Congrats to our champion ${championName}!! Hip, hip! Hooray!!`}</p>
                     </div>
                     <i className="nes-bcrikko"></i>
                 </section> : roundsPlayed === totalRounds - 1 ? 
-                <section className="item--error message -right">
+                <section className="container--message message -right">
                     <div className="nes-balloon from-right">
                     <p>Here it is, the final match! No cheating.</p>
                     </div>
                     <i className="nes-bcrikko"></i>
                 </section> 
-                : <section className="item--error message -right">
+                : <section className="container--message message -right">
                     <div className="nes-balloon from-right">
                         <p>{`You're currently playing Round ${roundsPlayed + 1}. Good luck everyone!`}</p>
                     </div>
                     <i className="nes-bcrikko"></i>
                 </section>
             }
-            <div className="container--tournament">
+            <div className="container--grid">
                 { rounds.map((round, index) => (
                     <div 
                         key={ index }
@@ -41,13 +41,14 @@ const Tournament = ({ totalRounds, roundsPlayed, players, champion, handleNewTou
                     >{ round }</div>
                 )) }
             </div>
-            <div className="container--new">
+
+            <div className="container--button">
                 <button 
                     onClick={ handleNewTournament }
-                    className="nes-btn is-success"
+                    className="big-btn nes-btn is-success"
                 >New Tournament</button>
             </div>
-        </>
+        </div>
     )
 };
 

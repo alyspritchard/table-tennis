@@ -53,7 +53,7 @@ class Match extends Component {
         let p2Win = winner === 2 && submitted ? "warning" : winner === 2 ? "success" : null;
 
         return (
-            <div className="container--match">
+            <div className="match">
                 <button 
                     onClick={ this.handlePlayer1 }
                     // this isn't doing any actual styling yet - if scores are equal both players highlighted amber, else green if winning/red if losing
