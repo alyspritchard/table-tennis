@@ -135,7 +135,7 @@ li {
 .container--tournament {
   margin: 8% 5%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: 1fr;
   grid-auto-columns: 1fr;
   gap: 5%;
@@ -143,56 +143,7 @@ li {
   align-items: stretch;
 }
 
-.item-0 {
-  grid-area: 1 / 1 / 2 / 2;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-1 {
-  grid-area: 1 / 2 / 2 / 3;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-2 {
-  grid-area: 1 / 3 / 2 / 4;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-3 {
-  grid-area: 1 / 4 / 2 / 5;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-4 {
-  grid-area: 1 / 5 / 2 / 6;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-5 {
-  grid-area: 1 / 6 / 2 / 7;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-6 {
-  grid-area: 1 / 7 / 2 / 8;
+.round {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -201,7 +152,6 @@ li {
 
 .container--new {
   margin: 5%;
-
 }
 
 .container--match {
@@ -237,6 +187,11 @@ li {
     font-size: 1.2rem;
   }
 
+  .container--tournament {
+    grid-auto-rows: auto;
+    margin-bottom: 15%;
+  }
+
 }
 
 /* small screens */
@@ -260,6 +215,7 @@ li {
   }
 
 }
+
 
 /* extra-small screens */
 @media screen and (max-width: 420px) {

@@ -15,7 +15,7 @@ const Tournament = ({ totalRounds, handleNewTournament }) => {
                 { rounds.map((round, index) => (
                     <div 
                         key={ index }
-                        className={`container--round nes-container is-rounded item-${index}`}
+                        className="round nes-container is-rounded"
                     >{ round }</div>
                 )) }
             </div>
