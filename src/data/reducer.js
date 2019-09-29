@@ -61,12 +61,9 @@ const assignPlayers = (state) => {
         playing = shuffle(state.players.map((p, index) => index));
     } else {
         let matches = state.matches.filter(match => match.round === state.roundsPlayed);
-        console.log(matches);
         let winners = matches.map(match => winner(match));
-        console.log(winners);
         playing = winners;
     }
-    console.log(playing);
 
     let matches = state.matches.map(match => {
         if (match.round === state.roundsPlayed + 1) {
@@ -120,7 +117,7 @@ const roundComplete = (state) => {
 
 const selectChampion = (state, { finalMatch }) => {
     const champion = winner(finalMatch);
-    console.log(champion);
+    
     return {
         ...state,
         champion: champion,

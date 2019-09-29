@@ -57,7 +57,7 @@ class Round extends Component {
         // check hasn't already been submitted & a winner has been picked
         if (!this.state.submitted && this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
             let match = this.state.matches[0];
-            console.log(match);
+            
             this.props.submitScores(match);
             this.props.endTournament(match);
             
