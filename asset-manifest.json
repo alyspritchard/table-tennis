@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/table-tennis/static/css/main.1c38c609.chunk.css",
+    "main.js": "/table-tennis/static/js/main.87bb5452.chunk.js",
+    "main.js.map": "/table-tennis/static/js/main.87bb5452.chunk.js.map",
+    "runtime-main.js": "/table-tennis/static/js/runtime-main.02bc7cbe.js",
+    "runtime-main.js.map": "/table-tennis/static/js/runtime-main.02bc7cbe.js.map",
+    "static/js/2.45b545b6.chunk.js": "/table-tennis/static/js/2.45b545b6.chunk.js",
+    "static/js/2.45b545b6.chunk.js.map": "/table-tennis/static/js/2.45b545b6.chunk.js.map",
+    "index.html": "/table-tennis/index.html",
+    "precache-manifest.9f25adc5b2aa1043529f2e945d414651.js": "/table-tennis/precache-manifest.9f25adc5b2aa1043529f2e945d414651.js",
+    "service-worker.js": "/table-tennis/service-worker.js",
+    "static/css/main.1c38c609.chunk.css.map": "/table-tennis/static/css/main.1c38c609.chunk.css.map",
+    "static/media/index.css": "/table-tennis/static/media/Full-Background.9a8b57cd.png"
+  }
+}
