@@ -79,8 +79,7 @@ class Round extends Component {
                     <Match 
                         key={ index } 
                         match={ match } 
-                        handleMatch={ this.handleMatches } 
-                        submitted={ this.state.submitted }
+                        handleMatch={ this.handleMatches }
                     />
                 )) }
 

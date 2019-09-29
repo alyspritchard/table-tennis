@@ -43,14 +43,14 @@ class Match extends Component {
     }
 
     render() {
-        let { players, match, submitted } = this.props;
+        let { players, match } = this.props;
         let { winner } = this.state;
 
         let player1 = players[match.player1];
         let player2 = players[match.player2];
 
-        let p1Win = winner === 1 && submitted ? "warning" : winner === 1 ? "success" : null;
-        let p2Win = winner === 2 && submitted ? "warning" : winner === 2 ? "success" : null;
+        let p1Win = match.p1Score > match.p2Score ? "warning" : winner === 1 ? "success" : null;
+        let p2Win = match.p2Score > match.p1Score ? "warning" : winner === 2 ? "success" : null;
 
         return (
             <div className="match">
