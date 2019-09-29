@@ -186,6 +186,10 @@ li {
     margin: 10%;
   }
 
+  .nes-balloon {
+    white-space: pre-wrap;
+  }
+
 }
 
 /* extra-small screens */

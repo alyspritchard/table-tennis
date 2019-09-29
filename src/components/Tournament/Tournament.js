@@ -16,7 +16,7 @@ const Tournament = ({ totalRounds, roundsPlayed, players, champion, handleNewTou
             { totalRounds === roundsPlayed ?
                 <section className="container--message message -right">
                     <div className="nes-balloon from-right">
-                        <p>{`Congrats to our champion ${championName}!! Hip, hip! Hooray!!`}</p>
+                        <p>{`Congrats to our champion - ${championName}!! \nHip, hip! Hooray!!`}</p>
                     </div>
                     <i className="nes-bcrikko"></i>
                 </section> : roundsPlayed === totalRounds - 1 ? 
@@ -28,7 +28,7 @@ const Tournament = ({ totalRounds, roundsPlayed, players, champion, handleNewTou
                 </section> 
                 : <section className="container--message message -right">
                     <div className="nes-balloon from-right">
-                        <p>{`You're currently playing Round ${roundsPlayed + 1}. Good luck everyone!`}</p>
+                        <p>{`You're currently playing Round ${roundsPlayed + 1}. \nClick on players to select them as the winner for their match. Once you're done click 'Next Round' to move on. \nGood luck everyone!`}</p>
                     </div>
                     <i className="nes-bcrikko"></i>
                 </section>
