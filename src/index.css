@@ -187,6 +187,7 @@ li {
   }
 
   .nes-balloon {
+    /* allows line breaks to take effect */
     white-space: pre-wrap;
   }
 
@@ -196,6 +197,10 @@ li {
 @media screen and (max-width: 420px) {
   html {
     font-size: 0.8rem;
+  }
+
+  .nes-balloon {
+    width: 100%;
   }
 
   i.nes-bcrikko {
