@@ -51,6 +51,8 @@ class Round extends Component {
     handleChampion(e) {
         e.preventDefault();
         let { round } = this.props;
+
+        let a = new Audio("https://themushroomkingdom.net/sounds/wav/smb/smb_world_clear.wav");
         
         // check hasn't already been submitted & a winner has been picked
         if (!this.state.submitted && this.state.matches.length === this.props.matches.filter(match => match.round === round).length) {
@@ -62,6 +64,8 @@ class Round extends Component {
             this.setState({
                 submitted: true,
             })
+
+            a.play();
         }
 
     }

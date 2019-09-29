@@ -8,31 +8,29 @@ const Tournament = ({ totalRounds, roundsPlayed, players, champion, handleNewTou
         rounds.push(<Round round={ i }/>)
     }
 
+    // audio played when bcrikko clicked on
+    const handleAudio = () => {
+        let a = new Audio("https://themushroomkingdom.net/sounds/wav/smb/smb_1-up.wav");
+        a.play();
+    }
+
     // if champion has been chosen, get name
     const championName = champion === -1 ? "" : players[champion].name;
 
+    let championMessage = `Congrats to our champion - ${championName}!! \nHip, hip! Hooray!!`;
+    let finalMessage = "Here it is, the final match! No cheating.";
+    let roundMessage = `You're currently playing Round ${roundsPlayed + 1}. \nClick on players to select them as the winner for their match. Once you're done click 'Next Round' to move on. \nGood luck everyone!`;
+
     return (
         <div className="container">
-            { totalRounds === roundsPlayed ?
-                <section className="container--message message -right">
-                    <div className="nes-balloon from-right">
-                        <p>{`Congrats to our champion - ${championName}!! \nHip, hip! Hooray!!`}</p>
-                    </div>
-                    <i className="nes-bcrikko"></i>
-                </section> : roundsPlayed === totalRounds - 1 ? 
-                <section className="container--message message -right">
-                    <div className="nes-balloon from-right">
-                    <p>Here it is, the final match! No cheating.</p>
-                    </div>
-                    <i className="nes-bcrikko"></i>
-                </section> 
-                : <section className="container--message message -right">
-                    <div className="nes-balloon from-right">
-                        <p>{`You're currently playing Round ${roundsPlayed + 1}. \nClick on players to select them as the winner for their match. Once you're done click 'Next Round' to move on. \nGood luck everyone!`}</p>
-                    </div>
-                    <i className="nes-bcrikko"></i>
-                </section>
-            }
+            <section className="container--message message -right">
+                <div className="nes-balloon from-right">
+                    <p>{ totalRounds === roundsPlayed ? championMessage : roundsPlayed === totalRounds - 1 ? finalMessage : roundMessage }
+                    </p>
+                </div>
+                <i onClick={ handleAudio } className="nes-bcrikko"></i>
+            </section>
+            
             <div className="container--grid">
                 { rounds.map((round, index) => (
                     <div 

@@ -59,30 +59,18 @@ class Settings extends Component {
     render() {
         let { name, players, nameError, playersError } = this.state;
 
+        let playersErrorMessage = "Don't forget what I said! You need a minimum of 4 players. The number of players also needs to be a power of 2! Don't ask me why, maths isn't my strong suit...";
+        let nameErrorMessage = "I need a valid name please! If the person you're trying to add, shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll I'm afraid.";
+        let welcomeMessage = "Welcome! To create your tournament you'll need a minimum of 4 players, and the total number of players needs to be a power of 2 (i.e. 4, 8, 16, 32 ...)";
+
         return (
             <div className="container">
-                { playersError ?
-                    <section className="container--message message -right">
-                        <div className="nes-balloon from-right">
-                            <p>Don't forget what I said! You need a minimum of 4 players. The number of players also needs to be a power of 2! Don't ask me why, maths isn't my strong suit...</p>
-                        </div>
-                        <i className="nes-bcrikko"></i>
-                    </section> 
-                : nameError ? 
-                    <section className="container--message message -right">
-                        <div className="nes-balloon from-right">
-                            <p>I need a valid name please! If the person you're trying to add, shares their name with someone already playing in the tournament, then they'll just have to change it by deed poll I'm afraid.</p>
-                        </div>
-                        <i className="nes-bcrikko"></i>
-                    </section> 
-                : 
-                    <section className="container--message message -right">
-                        <div className="nes-balloon from-right">
-                            <p>Welcome! To create your tournament you'll need a minimum of 4 players, and the total number of players needs to be a power of 2 (i.e. 4, 8, 16, 32 ...)</p>
-                        </div>
-                        <i className="nes-bcrikko"></i>
-                    </section> 
-                }
+                <section className="container--message message -right">
+                    <div className="nes-balloon from-right">
+                        <p>{ playersError ? playersErrorMessage : nameError ? nameErrorMessage : welcomeMessage }</p>
+                    </div>
+                    <i className="nes-bcrikko"></i>
+                </section> 
                 <div className="container--grid">
                     <form className="add nes-container is-rounded">
                         <h2 className="title--container">Add a Player</h2>
