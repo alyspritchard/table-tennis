@@ -15,6 +15,7 @@ class Settings extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleStart = this.handleStart.bind(this);
+        this.handleAudio = this.handleAudio.bind(this);
     }
 
     handleChange(e) {
@@ -56,6 +57,12 @@ class Settings extends Component {
         }
     }
 
+    // audio played when bcrikko clicked on
+    handleAudio = () => {
+        let a = new Audio("https://themushroomkingdom.net/sounds/wav/smb/smb_1-up.wav");
+        a.play();
+    }
+
     render() {
         let { name, players, nameError, playersError } = this.state;
 
@@ -69,7 +76,7 @@ class Settings extends Component {
                     <div className="nes-balloon from-right">
                         <p>{ playersError ? playersErrorMessage : nameError ? nameErrorMessage : welcomeMessage }</p>
                     </div>
-                    <i className="nes-bcrikko"></i>
+                    <i onClick={ this.handleAudio } className="nes-bcrikko"></i>
                 </section> 
                 <div className="container--grid">
                     <form className="add nes-container is-rounded">
