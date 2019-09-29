@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/table-tennis/precache-manifest.9f25adc5b2aa1043529f2e945d414651.js"
+  "/table-tennis/precache-manifest.a9d25955320b1e3ba5b75ceae709afee.js"
 );
 
 self.addEventListener('message', (event) => {
