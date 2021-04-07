@@ -20,14 +20,15 @@ const shuffle = (array) => {
 };
 
 // setup counter for matchID
-let matchID = 0;
+// let matchID = 0;
 
 // generate matches
 const generateMatches = (state) => {
     let totalRounds = Math.log2(state.players.length);
     let matches = [];
+    let matchID = state.matchID;
     let totalMatches = state.players.length / 2;
-    
+
     for (let i = 1; i <= totalRounds; i += 1) {
         for (let j = 1; j <= totalMatches; j += 1) {
             matches.push({
@@ -42,7 +43,7 @@ const generateMatches = (state) => {
         }
         totalMatches = totalMatches / 2;
     }
-    
+
     // update state
     return {
         ...state,
@@ -117,7 +118,7 @@ const roundComplete = (state) => {
 
 const selectChampion = (state, { finalMatch }) => {
     const champion = winner(finalMatch);
-    
+
     return {
         ...state,
         champion: champion,
@@ -137,8 +138,8 @@ const reducer = (state, action) => {
         case "nextRound": return assignPlayers(roundComplete(state));
         case "endTournament": return roundComplete(selectChampion(state, action));
         case "newTournament": return reset(state);
-        default: return state; 
-    }; 
+        default: return state;
+    };
 };
 
 export default reducer;
